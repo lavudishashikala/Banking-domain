@@ -116,13 +116,18 @@ resource "aws_network_interface" "proj-ni" {
   private_ips     = ["10.0.1.10"]
   security_groups = [aws_security_group.proj-sg.id]
 }
-
 # Attaching an elastic IP to the network interface
 resource "aws_eip" "proj-eip" {
   vpc = true
-  network_interface = aws_network_interface.proj-ni.id
-  associate_with_private_ip = "10.0.1.10"
 }
+
+resource "aws_eip_association" "proj-eip-assoc" {
+  network_interface_id = aws_network_interface.proj-ni.id
+  allocation_id = aws_eip.proj-eip.id
+  private_ip_address = "10.0.1.10"
+}
+
+
 # Creating an ubuntu EC2 instance
 resource "aws_instance" "Prod-Server" {
   ami           = "ami-0375ab65ee943a2a6" # Updated AMI
