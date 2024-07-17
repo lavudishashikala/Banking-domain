@@ -123,7 +123,6 @@ resource "aws_eip" "proj-eip" {
   network_interface = aws_network_interface.proj-ni.id
   associate_with_private_ip = "10.0.1.10"
 }
-
 # Creating an ubuntu EC2 instance
 resource "aws_instance" "Prod-Server" {
   ami           = "ami-0375ab65ee943a2a6" # Updated AMI
@@ -135,6 +134,8 @@ resource "aws_instance" "Prod-Server" {
     network_interface_id = aws_network_interface.proj-ni.id
   }
   user_data = <<-EOF
-    #!/bin/bash
-    sudo apt-get update -y
+              #!/bin/bash
+              sudo apt-get update -y
+              EOF
 }
+
