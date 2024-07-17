@@ -137,3 +137,4 @@ resource "aws_instance" "Prod-Server" {
   user_data = <<-EOF
     #!/bin/bash
     sudo apt-get update -y
+}
