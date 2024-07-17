@@ -1,4 +1,5 @@
-REST API- name : Configure Docker on EC2 Instances
+---
+- name : "REST API - Configure Docker on EC2 Instances"
   hosts : all
   become: true
   become_user: root
